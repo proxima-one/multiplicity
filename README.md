@@ -1,9 +1,12 @@
 multiplicity
 ============
 
-This library provides a generic implementation of *MSet-Mu-Hash* from [Clarke et. al's incremental multiset hash function paper](https://people.csail.mit.edu/devadas/pubs/mhashes.pdf). **The implementation has not b een autided, so use it at your own risk.**
+[![Crates.io](https://img.shields.io/crates/v/multiplicity.svg)](https://crates.io/crates/multiplicity)
+[![Documentation](https://docs.rs/multiplicity/badge.svg)](https://docs.rs/mutiplicity/)
 
-See the docs or check out tests in [lib.rs](/src/lib.rs) for example usage.
+This library provides a generic implementation of *MSet-Mu-Hash* from [Clarke et. al's incremental multiset hash function paper](https://people.csail.mit.edu/devadas/pubs/mhashes.pdf). **The implementation has not been autided, so use it at your own risk.**
+
+See the [docs](https://docs.rs/mutiplicity/) or check out tests in [lib.rs](/src/lib.rs) for example usage.
 
 ## Multisets
 
