@@ -16,7 +16,7 @@ impl<F: Field> MultisetHash<F> {
         MultisetHash(self.0 * term)
     }
 
-    /// same as [`add`], but works on any type that implements [`HashToField`] and hashes it to the field before adding it. Just a convenience wrapper.
+    /// same as [`MultisetHash::add`], but works on any type that implements [`HashToField`] and hashes it to the field before adding it. Just a convenience wrapper.
     pub fn add_elem<T: HashToField<F>>(&mut self, elem: T, count: u64) -> Self {
         let term = HashToField::hash_to_field(&elem).pow_vartime([count]);
         MultisetHash(self.0 * term)
@@ -31,7 +31,7 @@ impl<F: Field> MultisetHash<F> {
         MultisetHash(self.0 * inv_term.unwrap())
     }
 
-    /// same as [`remove`], but works on any type that implements [`HashToField`] and hashes it to the field before removing it. Just a convenience wrapper.
+    /// same as [`MultisetHash::remove`], but works on any type that implements [`HashToField`] and hashes it to the field before removing it. Just a convenience wrapper.
     pub fn remove_elem<T: HashToField<F>>(&mut self, elem: T, count: u64) -> Self {
         let inv_term = HashToField::hash_to_field(&elem).pow_vartime([count]).invert();
         if bool::from(inv_term.is_none()) {
