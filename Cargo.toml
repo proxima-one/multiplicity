@@ -1,8 +1,10 @@
 [package]
 name = "multiplicity"
+license = "MIT"
 description = "A simple additively homomorphic multiset hash function"
 version = "0.1.0"
 edition = "2021"
+repository = "https://github.com/proxima-one/multiplicity/"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
