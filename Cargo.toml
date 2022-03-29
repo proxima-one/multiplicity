@@ -1,5 +1,6 @@
 [package]
 name = "multiplicity"
+description = "A simple additively homomorphic multiset hash function"
 version = "0.1.0"
 edition = "2021"
 
