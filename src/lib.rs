@@ -15,13 +15,6 @@ impl<F: Field> MultisetHash<F> {
         let term = elem.pow_vartime([count]);
         MultisetHash(self.0 * term)
     }
-
-    /// same as [`MultisetHash::add`], but works on any type that implements [`HashToField`] and hashes it to the field before adding it. Just a convenience wrapper.
-    pub fn add_elem<T: HashToField<F>>(&mut self, elem: T, count: u64) -> Self {
-        let term = HashToField::hash_to_field(&elem).pow_vartime([count]);
-        MultisetHash(self.0 * term)
-    }
-
     /// compute the hash that would result when "removing" `count` instances of `elem` from the underlying multiset. Note that this can result in negative multiplicities.
     pub fn remove(&mut self, elem: F, count: u64) -> Self {
         let inv_term = elem.pow_vartime([count]).invert();
@@ -30,16 +23,6 @@ impl<F: Field> MultisetHash<F> {
         }
         MultisetHash(self.0 * inv_term.unwrap())
     }
-
-    /// same as [`MultisetHash::remove`], but works on any type that implements [`HashToField`] and hashes it to the field before removing it. Just a convenience wrapper.
-    pub fn remove_elem<T: HashToField<F>>(&mut self, elem: T, count: u64) -> Self {
-        let inv_term = HashToField::hash_to_field(&elem).pow_vartime([count]).invert();
-        if bool::from(inv_term.is_none()) {
-            panic!("elements must be nonzero");
-        }
-        MultisetHash(self.0 * inv_term.unwrap())
-    }
-
 
     /// returns the hash that would result when performing the "multiset union" between the underlying multisets of `self` and `other`.
     /// Here, we define the "multiset union" as a multiset in which each element's multiplicity is the sum of its multiplicities in the initial multisets.
@@ -64,10 +47,6 @@ impl<F: Field> From<F> for MultisetHash<F> {
     fn from(f: F) -> Self {
         MultisetHash(f)
     }
-}
-
-pub trait HashToField<F: Field> {
-    fn hash_to_field(&self) -> F;
 }
 
 #[cfg(test)]
