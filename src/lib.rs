@@ -2,7 +2,7 @@ use ff::Field;
 
 /// A Multiset hash. This is a just a finite field element.
 /// We use a slightly different notion of "multiset" than elsewhere. The biggest difference is we allow negative multiplicities. See the readme for more information.
-pub struct MultisetHash<F>(pub(crate) F);
+pub struct MultisetHash<F>(pub F);
 
 impl<F: Field> MultisetHash<F> {
     /// constructs a multiset hash for an empty multiset
@@ -57,6 +57,12 @@ impl<F: Field> MultisetHash<F> {
         }
 
         MultisetHash(self.0 * inv.unwrap())
+    }
+}
+
+impl<F: Field> From<F> for MultisetHash<F> {
+    fn from(f: F) -> Self {
+        MultisetHash(f)
     }
 }
 
